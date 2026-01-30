@@ -22,7 +22,7 @@
             padding: 20px 15px;
             min-height: 100vh;
             background-attachment: fixed;
-            font-size: 1.1rem; /* Texto base más grande */
+            font-size: 1.1rem;
             line-height: 1.6;
         }
         h1 {
@@ -162,7 +162,6 @@
             <label><input type="checkbox" name="q2" value="D"><span> D) Mantengo la calma total, ayudo paso a paso sin alterarme.</span></label>
         </div>
 
-        <!-- Las otras preguntas siguen igual, solo agrego transition-delay progresivo para fade-in secuencial -->
         <div class="question" style="transition-delay: 0.3s;">
             <p>3. Cómo eres con las metas o tareas:</p>
             <label><input type="checkbox" name="q3" value="A"><span> A) Empiezo con mucha energía y entusiasmo, pero a veces dejo cosas a medias.</span></label>
@@ -217,7 +216,7 @@
     <div id="result"></div>
 
     <script>
-        // Fade-in secuencial de preguntas al cargar
+        // Fade-in secuencial de preguntas al cargar la página
         window.addEventListener('load', () => {
             document.querySelectorAll('.question').forEach((q, i) => {
                 setTimeout(() => q.classList.add('visible'), 150 * i);
@@ -290,8 +289,9 @@
 
         function restartQuiz() {
             document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-            document.getElementById('result').classList.remove('show');
-            document.getElementById('result').innerHTML = '';
+            const resultDiv = document.getElementById('result');
+            resultDiv.classList.remove('show');
+            resultDiv.innerHTML = '';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
