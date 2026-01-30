@@ -256,3 +256,181 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Test de Temperamentos - Grok Edition</title>
+    <style>
+        :root {
+            --bg: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            --text: #f0f0ff;
+            --accent: #00eaff;
+            --accent-glow: rgba(0, 234, 255, 0.25);
+            --card: rgba(35, 35, 70, 0.8);
+            --button: #7b2cbf;
+            --button-hover: #b794f4;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px 15px;
+            min-height: 100vh;
+            background-attachment: fixed;
+            font-size: 1.1rem; /* Texto base más grande */
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            text-shadow: 0 0 12px var(--accent-glow);
+            margin: 20px 0 15px;
+            font-size: 2.4rem;
+            animation: fadeIn 1.8s ease-out;
+        }
+        .intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 35px;
+            font-size: 1.15rem;
+            opacity: 0.92;
+        }
+        .question {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.55);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0,234,255,0.08);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .question.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .question:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 45px rgba(0,234,255,0.18);
+        }
+        label {
+            display: block;
+            margin: 14px 0;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+            cursor: pointer;
+            transition: all 0.35s ease;
+            font-size: 1.05rem;
+        }
+        label:hover {
+            background: rgba(0,234,255,0.14);
+            transform: translateX(8px);
+            box-shadow: 0 4px 15px rgba(0,234,255,0.1);
+        }
+        input[type="checkbox"]:checked + span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        button, .restart-btn {
+            display: block;
+            margin: 35px auto;
+            padding: 16px 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            background: var(--button);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(123,44,191,0.5);
+            transition: all 0.4s ease;
+        }
+        button:hover, .restart-btn:hover {
+            background: var(--button-hover);
+            transform: scale(1.07);
+            box-shadow: 0 0 35px rgba(183,148,244,0.7);
+        }
+        #result {
+            margin-top: 45px;
+            padding: 35px;
+            background: var(--card);
+            border-radius: 20px;
+            box-shadow: 0 12px 50px rgba(0,0,0,0.65);
+            border: 1px solid rgba(0,234,255,0.12);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.1s ease;
+        }
+        #result.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #result h2 {
+            color: var(--accent);
+            text-shadow: 0 0 12px var(--accent-glow);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        #result h3 {
+            color: #c4c4ff;
+            font-size: 1.5rem;
+            margin: 25px 0 10px;
+        }
+        .restart-btn {
+            margin-top: 30px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shake {
+            0%,100% { transform: translateX(0); }
+            20% { transform: translateX(-6px); }
+            40% { transform: translateX(6px); }
+            60% { transform: translateX(-4px); }
+            80% { transform: translateX(4px); }
+        }
+        .error { animation: shake 0.6s ease; }
+    </style>
+</head>
+<body>
+    <h1>Mini-Test de los 4 Temperamentos</h1>
+    <p class="intro">Basado en la teoría clásica y adaptado por Grok (xAI). Responde lo que más te represente. Puedes seleccionar varias opciones por pregunta.</p>
+
+    <form id="quizForm">
+        <div class="question" style="transition-delay: 0.1s;">
+            <p>1. En una fiesta o reunión grande con gente nueva:</p>
+            <label><input type="checkbox" name="q1" value="A"><span> A) Soy el que anima todo, hablo con todos, me divierto mucho y hago chistes.</span></label>
+            <label><input type="checkbox" name="q1" value="B"><span> B) Tomo el control: organizo juegos, decido qué hacer, lidero el grupo.</span></label>
+            <label><input type="checkbox" name="q1" value="C"><span> C) Me quedo más observando, converso en profundidad con 1-2 personas, o me voy temprano si me aburro.</span></label>
+            <label><input type="checkbox" name="q1" value="D"><span> D) Estoy cómodo, escucho, ayudo si alguien necesita algo, pero no busco ser el centro.</span></label>
+        </div>
+
+        <div class="question" style="transition-delay: 0.2s;">
+            <p>2. Cuando hay un problema o emergencia repentina:</p>
+            <label><input type="checkbox" name="q2" value="A"><span> A) Me emociono, actúo rápido por impulso, pero a veces me disperso.</span></label>
+            <label><input type="checkbox" name="q2" value="B"><span> B) Tomo decisiones firmes y rápidas, digo qué hay que hacer y lo hago ya.</span></label>
+            <label><input type="checkbox" name="q2" value="C"><span> C) Pienso mucho en todos los riesgos y detalles antes de actuar, me preocupo.</span></label>
+            <label><input type="checkbox" name="q2" value="D"><span> D) Mantengo la calma total, ayudo paso a paso sin alterarme.</span></label>
+        </div>
+
+        <!-- Las otras preguntas siguen igual, solo agrego transition-delay progresivo para fade-in secuencial -->
+        <div class="question" style="transition-delay: 0.3s;">
+            <p>3. Cómo eres con las metas o tareas:</p>
+            <label><input type="checkbox" name="q3" value="A"><span> A) Empiezo con mucha energía y entusiasmo, pero a veces dejo cosas a medias.</span></label>
+            <label><input type="checkbox" name="q3" value="B"><span> B) Voy a full hasta terminar, odio fallar, soy muy competitivo.</span></label>
+            <label><input type="checkbox" name="q3" value="C"><span> C) Planifico todo al detalle, quiero que salga perfecto, me cuesta empezar si no está bien.</span></label>
+            <label><input type="checkbox" name="q3" value="D"><span> D) Hago lo que hay que hacer de forma constante y sin drama, prefiero rutina estable.</span></label>
+        </div>
+
+        <div class="question" style="transition-delay: 0.4s;">
+            <p>4. En el trabajo o estudios, qué te motiva más:</p>
+            <label><input type="checkbox" name="q4" value="A"><span> A) Estar con gente, pasarla bien, que me reconozcan o elogien.</span></label>
+            <label><input type="checkbox" name="q4" value="B"><span> B) Lograr resultados, ganar, tener poder o éxito visible.</span></label>
+            <label><input type="checkbox" name="q4" value="C"><span>
